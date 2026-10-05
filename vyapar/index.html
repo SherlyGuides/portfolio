@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Vaibhav Kumar, Product Manager. Case studies and a product note for the Vyapar Product Manager role.">
+<title>Vaibhav Kumar Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a khata-ledger page. One reading column with a left margin rail for metadata, ruled like a shop's account book. */
+:root{
+  --paper:#f5f6f2; --sheet:#fbfcf9; --ink:#14202a; --ink2:#4b5762; --muted:#7a858d;
+  --rule:#dde2da; --margin:#d9a49a; --accent:#1f4fbf; --accent-soft:#e6ecfa; --stamp:#c2361f; --ok:#1d7a4f;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",sans-serif;
+  --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0f1418; --sheet:#151c21; --ink:#e7ebee; --ink2:#b3bcc3; --muted:#86919a;
+  --rule:#26313a; --margin:#7a3f37; --accent:#86a6ff; --accent-soft:#1b2643; --stamp:#f0735c; --ok:#4cc38a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0f1418; --sheet:#151c21; --ink:#e7ebee; --ink2:#b3bcc3; --muted:#86919a;
+  --rule:#26313a; --margin:#7a3f37; --accent:#86a6ff; --accent-soft:#1b2643; --stamp:#f0735c; --ok:#4cc38a; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:40px 72px}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.015em}
+p{margin:0}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* hero */
+.hero{position:relative;padding:28px 0 36px;border-bottom:1px solid var(--rule)}
+.hero .label{display:flex;gap:14px;flex-wrap:wrap}
+.hero h1{font-size:clamp(34px,6vw,62px);line-height:1.04;font-weight:700;margin:18px 0 20px;max-width:17ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{font-size:18px;color:var(--ink2);max-width:62ch}
+.hero .who{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:15px;align-items:center}
+.who strong{font-family:var(--display);font-size:19px;font-weight:700}
+
+.figures{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--rule)}
+.fig{padding:20px 16px 20px 0;display:grid;gap:4px;align-content:start}
+.fig + .fig{padding-left:16px;border-left:1px solid var(--rule)}
+.fig .n{font-family:var(--mono);font-size:30px;font-weight:500;letter-spacing:-.02em;line-height:1.1}
+.fig .t{font-size:13.5px;color:var(--ink2);line-height:1.4}
+@media(max-width:720px){.figures{grid-template-columns:1fr 1fr}.fig:nth-child(3){padding-left:0;border-left:0}.fig:nth-child(n+3){border-top:1px solid var(--rule)}}
+
+/* sections */
+section{padding-top:64px}
+.sec-head{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;margin-bottom:26px;align-items:end}
+.sec-head h2{font-size:clamp(26px,3.4vw,36px);line-height:1.1}
+.sec-head p{color:var(--ink2);max-width:60ch;margin-top:8px}
+@media(max-width:760px){.sec-head{grid-template-columns:1fr;gap:6px}}
+
+/* ledger table */
+.ledger-wrap{overflow-x:auto;background:var(--sheet);border:1px solid var(--rule);border-radius:6px}
+table.ledger{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
+.ledger th{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:12px 16px;border-bottom:2px solid var(--ink)}
+.ledger td{padding:13px 16px;border-bottom:1px solid var(--rule);vertical-align:top}
+.ledger tr:last-child td{border-bottom:0}
+.ledger td:first-child{font-family:var(--mono);color:var(--muted);width:44px;border-right:1px solid var(--margin)}
+.ledger td:nth-child(2){font-weight:600;width:34%}
+.ledger td:nth-child(3){color:var(--ink2)}
+
+/* case studies */
+.case{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:32px 0;border-top:1px solid var(--rule)}
+.case:first-of-type{border-top:0;padding-top:0}
+.meta{display:grid;gap:12px;align-content:start;font-size:14px;color:var(--ink2)}
+.meta div{display:grid;gap:2px}
+.meta .v{color:var(--ink)}
+.case h3{font-size:24px;line-height:1.2;margin-bottom:12px}
+.case .body{display:grid;gap:14px;max-width:66ch}
+.case .body p{color:var(--ink2)}
+.case .body p b{color:var(--ink);font-weight:600}
+.case .body p b a{color:var(--accent)}
+.case ul{margin:0;padding-left:18px;color:var(--ink2);display:grid;gap:6px}
+.result{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+@media(max-width:760px){.case{grid-template-columns:1fr;gap:14px}.meta{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}}
+
+/* Vyapar case */
+.proposal{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:32px clamp(18px,4vw,40px);position:relative;overflow:hidden}
+.proposal::before{content:"";position:absolute;top:0;bottom:0;left:clamp(10px,2vw,22px);border-left:1px solid var(--margin)}
+.proposal > *{position:relative}
+.note{font-size:14px;color:var(--ink2);border:1px dashed var(--rule);border-radius:6px;padding:10px 14px;max-width:72ch}
+.pgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 40px;margin-top:28px}
+.pgrid h4{font-family:var(--display);font-size:18px;margin:0 0 8px;letter-spacing:-.01em}
+.pgrid p,.pgrid li{color:var(--ink2);font-size:15px}
+.pgrid ul,.pgrid ol{margin:0;padding-left:18px;display:grid;gap:6px}
+.full{grid-column:1/-1}
+@media(max-width:760px){.pgrid{grid-template-columns:1fr}}
+
+.ladder{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:6px;counter-reset:step}
+.rung{padding:14px 14px 14px 0;border-top:3px solid var(--rule);display:grid;gap:4px;align-content:start}
+.rung + .rung{padding-left:14px}
+.rung.owner{border-top-color:var(--stamp)}
+.rung .d{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.rung b{font-size:15px}
+.rung span{font-size:14px;color:var(--ink2);line-height:1.45}
+@media(max-width:760px){.ladder{grid-template-columns:1fr 1fr}.rung:nth-child(3){padding-left:0}}
+
+/* wireframes */
+.phones{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;margin:8px 0 4px}
+.phone{width:280px;max-width:100%;border:2px solid var(--ink);border-radius:30px;padding:14px 12px 18px;background:var(--paper)}
+.phone .bar{height:6px;width:70px;border-radius:6px;background:var(--rule);margin:0 auto 12px}
+.phone .ttl{font-family:var(--display);font-weight:700;font-size:17px;display:flex;justify-content:space-between;align-items:baseline;padding:0 4px 8px;border-bottom:1px solid var(--rule)}
+.phone .ttl small{font-family:var(--mono);font-weight:400;font-size:11.5px;color:var(--muted)}
+.due{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;padding:10px 4px;border-bottom:1px solid var(--rule);font-size:13.5px;position:relative}
+.due .nm{font-weight:600}
+.due .amt{font-family:var(--mono);text-align:right}
+.due .st{font-size:12px;color:var(--ink2)}
+.tag{font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:999px;justify-self:end;align-self:center}
+.tag.wait{background:var(--accent-soft);color:var(--accent)}
+.tag.act{background:color-mix(in srgb,var(--stamp) 14%,transparent);color:var(--stamp)}
+.tag.ok{background:color-mix(in srgb,var(--ok) 14%,transparent);color:var(--ok)}
+.stamp{position:absolute;right:60px;top:8px;font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.14em;color:var(--stamp);border:2px solid var(--stamp);border-radius:4px;padding:1px 6px;transform:rotate(-9deg);opacity:.85}
+@media (prefers-reduced-motion:no-preference){.stamp{animation:thump .5s cubic-bezier(.2,1.6,.4,1) .6s both}}
+@keyframes thump{from{transform:rotate(-9deg) scale(1.7);opacity:0}to{transform:rotate(-9deg) scale(1);opacity:.85}}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:12px 4px 0}
+.btns span{border:1px solid var(--ink);border-radius:8px;text-align:center;font-size:12.5px;padding:7px 4px}
+.btns span.pri{background:var(--ink);color:var(--paper)}
+.chat{display:grid;gap:8px;padding-top:10px}
+.msg{background:var(--sheet);border:1px solid var(--rule);border-radius:12px 12px 12px 3px;padding:9px 11px;font-size:13px;line-height:1.45;max-width:92%}
+.msg.me{justify-self:end;border-radius:12px 12px 3px 12px;background:var(--accent-soft);border-color:transparent}
+.msg .pill{display:inline-block;margin-top:6px;border:1px solid var(--ink);border-radius:6px;padding:3px 9px;font-family:var(--mono);font-size:11.5px}
+.msg small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
+.cap{text-align:center;font-size:13px;color:var(--muted);margin-top:10px;max-width:280px}
+.phone-col{display:grid;justify-items:center}
+
+.kpi{display:grid;gap:10px}
+.kpi .ns{border:2px solid var(--ink);border-radius:6px;padding:12px 14px}
+.kpi .ns b{font-family:var(--display);font-size:17px;display:block}
+.kpi .row3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.kpi .row3 div{border:1px solid var(--rule);border-radius:6px;padding:9px 10px;font-size:13.5px;color:var(--ink2)}
+.kpi .guard{font-size:14px;color:var(--ink2)}
+@media(max-width:760px){.kpi .row3{grid-template-columns:1fr 1fr}}
+
+/* how I work */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.step{border-top:2px solid var(--ink);padding-top:12px;display:grid;gap:6px;align-content:start}
+.step .k{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.step b{font-family:var(--display);font-size:19px;font-weight:700;line-height:1.2}
+.step p{color:var(--ink2);font-size:15px}
+@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.steps{grid-template-columns:1fr}}
+
+/* timeline */
+.tl{display:grid}
+.tl > div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.tl .when{font-family:var(--mono);font-size:13.5px;color:var(--muted);padding-top:2px}
+.tl b{font-weight:600}
+.tl p{color:var(--ink2);font-size:15px;margin-top:2px}
+@media(max-width:760px){.tl > div{grid-template-columns:1fr;gap:2px}}
+
+/* contact */
+.contact{margin-top:64px;padding:32px 0 0;border-top:2px solid var(--ink);display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px}
+.contact h2{font-size:30px}
+.cl{display:grid;gap:10px;font-size:16px}
+.cl div{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
+.cl .mono{font-size:15px}
+.copy{font:inherit;font-size:12.5px;font-family:var(--mono);background:transparent;color:var(--ink2);border:1px solid var(--rule);border-radius:6px;padding:3px 9px;cursor:pointer}
+.copy:hover{border-color:var(--ink2)}
+@media(max-width:760px){.contact{grid-template-columns:1fr;gap:12px}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="label"><span>Product Manager</span><span>Bangalore</span><span>Portfolio, Oct 2026</span></div>
+  <h1>I build for people who are busy doing <em>their real job.</em></h1>
+  <p class="lede">Teachers in the middle of a class. Shop owners with a queue at the counter. At Think Pro Academy I took Learno from a content player to a teaching assistant used at 100+ schools by sitting in classrooms first and building second. This page shows that work, and how I would bring the same approach to Vyapar's small-business owners.</p>
+  <div class="who"><strong>Vaibhav Kumar</strong><span>B.Tech, Delhi Technological University</span><a href="Vaibhav_Kumar_Vyapar_PM_Resume.pdf">Resume (PDF)</a><a href="#contact">Contact</a></div>
+</header>
+
+<div class="figures" aria-label="Key figures">
+  <div class="fig"><span class="n">100+</span><span class="t">schools using Learno, the teaching assistant I own</span></div>
+  <div class="fig"><span class="n">~2/day</span><span class="t">features shipped and tested, with clutter cut as fast</span></div>
+  <div class="fig"><span class="n">70–95%</span><span class="t">less production effort on PPTs (~70%) and animated videos (~95%)</span></div>
+  <div class="fig"><span class="n">15 days</span><span class="t">from first brief to first 3D model set, with a new pipeline</span></div>
+</div>
+
+<section id="fit">
+  <div class="sec-head">
+    <span class="label">Role match</span>
+    <div><h2>What the role asks for, and where I've done it</h2><p>Line items from Vyapar's Product Manager posting, against work I can show.</p></div>
+  </div>
+  <div class="ledger-wrap">
+    <table class="ledger">
+      <thead><tr><th>No.</th><th>The role asks for</th><th>Where I've done it</th></tr></thead>
+      <tbody>
+        <tr><td>01</td><td>Customer research that decides what gets built next</td><td>Sat in live classes and delivery sessions. Every Learno feature involved at least one teacher's feedback.</td></tr>
+        <tr><td>02</td><td>User empathy and simpler usability</td><td>Phone-number sign-in, offline sessions, tick-off parts lists, plain-English activity logs. The rule: less for the teacher to operate.</td></tr>
+        <tr><td>03</td><td>Ownership of feature performance</td><td>Measured production effort before and after automation (~70% and ~95% saved). Removed features that added clutter.</td></tr>
+        <tr><td>04</td><td>Products for internal teams</td><td>Content, video, 3D and book production pipelines; PPT Splitter; Build Steps. Most of my work is tools other people run every day.</td></tr>
+        <tr><td>05</td><td>Helping customer-facing teams drive adoption</td><td>Automated teacher readiness across ~100 schools on WhatsApp, with progress tracking and escalation to a person.</td></tr>
+        <tr><td>06</td><td>Working closely with design and engineering</td><td>I build with Claude Code myself. At Bramer I coordinated design, electronics and airframe teams on one spec.</td></tr>
+        <tr><td>07</td><td>Engineering or management degree</td><td>B.Tech, Mechanical Engineering, DTU (2025). Published in the ISME Journal, design patent pending.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="work">
+  <div class="sec-head">
+    <span class="label">Selected work</span>
+    <div><h2>Four things I built, and why they look the way they do</h2></div>
+  </div>
+
+  <article class="case">
+    <div class="meta">
+      <div><span class="label">Role</span><span class="v">Product Manager, owner</span></div>
+      <div><span class="label">When</span><span class="v mono">Feb 2026 – now</span></div>
+      <div><span class="label">Users</span><span class="v">Teachers at 100+ schools</span></div>
+    </div>
+    <div class="body">
+      <h3>Learno: from content player to teaching assistant</h3>
+      <p><b>The situation.</b> Learno started as a player for lesson content. Teachers were running hands-on build classes with a room full of students, a projector, and school internet that came and went.</p>
+      <p><b>What I did.</b> I sat in classrooms and delivery sessions and watched where teachers lost time. Every feature involved at least one teacher's feedback and was agreed with the founders and stakeholders, then shipped and tested fast. I shipped about two features a day with Claude Code.</p>
+      <ul>
+        <li>Offline sessions, so a class doesn't stop when the Wi-Fi does.</li>
+        <li>Phone-number sign-in, because teachers don't remember another password.</li>
+        <li>Parts lists teachers tick off during a build.</li>
+        <li>Plain-English activity logs for reviewers who aren't technical.</li>
+      </ul>
+      <p><b>What I cut.</b> Anything that gave the teacher one more thing to operate. Shipping fast only works if you remove just as fast.</p>
+      <div class="result"><span class="chip">100+ schools</span><span class="chip">~2 features/day</span><span class="chip">offline-first</span></div>
+    </div>
+  </article>
+
+  <article class="case">
+    <div class="meta">
+      <div><span class="label">Role</span><span class="v">Designed and built</span></div>
+      <div><span class="label">Channel</span><span class="v">WhatsApp Business API</span></div>
+      <div><span class="label">Reach</span><span class="v">~100 schools</span></div>
+    </div>
+    <div class="body">
+      <h3>Teacher readiness, run on WhatsApp</h3>
+      <p><b>The situation.</b> Teachers at ~100 schools need to be ready before a lesson, and they already live on WhatsApp, so readiness went there instead of into another app.</p>
+      <p><b>What I did.</b> Built readiness into the chat they already use: prompts go out on WhatsApp, teachers can answer by voice, progress is tracked per school, and anyone falling behind is escalated to a person on our side.</p>
+      <p><b>Why it matters here.</b> This is the same shape as getting a small business paid: an automated nudge in a familiar channel, a record of who has responded, and a human step when automation stops working. The Vyapar idea below builds on it.</p>
+      <div class="result"><span class="chip">voice replies</span><span class="chip">progress tracking</span><span class="chip">escalation</span></div>
+    </div>
+  </article>
+
+  <article class="case">
+    <div class="meta">
+      <div><span class="label">Role</span><span class="v">Built, then delegated</span></div>
+      <div><span class="label">Users</span><span class="v">Content team, contract workers</span></div>
+      <div><span class="label">Scope</span><span class="v">Company-wide</span></div>
+    </div>
+    <div class="body">
+      <h3>Production pipelines the company runs on</h3>
+      <p><b>The situation.</b> Every lesson needs slides, animated video, 3D models and printed books.</p>
+      <p><b>What I did.</b> Automated each stream and connected them. Books are now produced end to end: AI writes the content and images, Python handles formatting, and image-to-text models review the pages. Lesson content is checked automatically for reading level, terminology and safety rules. I also created a 3D (GLB) content stream the company didn't have before.</p>
+      <p><b>Then I handed it off.</b> The pipeline is run by contract workers outside company retainers, so it carries no fixed payroll and my time goes back to the product.</p>
+      <div class="result"><span class="chip">~70% less effort on PPTs</span><span class="chip">~95% on animated video</span><span class="chip">new 3D stream</span></div>
+    </div>
+  </article>
+
+  <article class="case">
+    <div class="meta">
+      <div><span class="label">Role</span><span class="v">Designed and built</span></div>
+      <div><span class="label">Users</span><span class="v">Schools on weak internet</span></div>
+      <div><span class="label">Type</span><span class="v">Internal tools</span></div>
+    </div>
+    <div class="body">
+      <h3>Small tools for low-bandwidth schools</h3>
+      <p><b><a href="https://github.com/SherlyGuides/pptx-splitter">PPT Splitter</a>.</b> Lesson decks with embedded video were too heavy to download in many schools. The tool sends a light PDF plus the videos as separate MP4 files, so teachers get the slides first and the videos when they can.</p>
+      <p><b><a href="https://github.com/SherlyGuides/build-steps">Build Steps</a>.</b> Turns phone photos of a model being assembled into a build-instruction deck and a parts list, so instructions come straight from the workbench.</p>
+      <div class="result"><span class="chip">phone-photo input</span><span class="chip">works on weak networks</span></div>
+    </div>
+  </article>
+</section>
+
+<section id="vyapar">
+  <div class="sec-head">
+    <span class="label">If I joined</span>
+    <div><h2>A first look at Vyapar: reminders that get paid</h2><p>A short product note in the format I would bring to the team: problem, what I'd check first, a sketch, and how we'd know it worked.</p></div>
+  </div>
+
+  <div class="proposal">
+    <p class="note">Written from the outside, using only public information about Vyapar. Everything here is a hypothesis to test with real users and real data, not a conclusion.</p>
+
+    <div class="pgrid">
+      <div>
+        <h4>What's already there</h4>
+        <ul>
+          <li>Over 1 crore businesses use Vyapar for billing, stock and accounts.</li>
+          <li>Bills and payment reminders can be sent on WhatsApp, with UPI collection.</li>
+          <li>Billing works offline and syncs later, and the app runs in 9+ languages.</li>
+          <li>The Suvit acquisition (Nov 2025) adds AI-led reconciliation and compliance.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>The problem I'd bet on</h4>
+        <p>For a kirana store or a distributor, <i>udhaar</i> (selling on credit) keeps regular customers coming back, and it's also where cash gets stuck. Sending a reminder is already one tap. Getting paid is harder: owners hold back from chasing regulars because they don't want to spoil the relationship, so the reminder never goes out, or goes out once and stops.</p>
+      </div>
+
+      <div>
+        <h4>What I'd check in the first two weeks</h4>
+        <ol>
+          <li>Spend a working day each in about ten shops and distributors across two Bangalore markets, especially at closing time when the day's dues get settled.</li>
+          <li>Pull reminder data: what share of reminders leads to payment within 7 days, and does that change with the UPI link, language or time of day?</li>
+          <li>Talk to support and sales about why owners switch reminders off.</li>
+        </ol>
+      </div>
+      <div>
+        <h4>The idea: a reminder ladder</h4>
+        <p>Vyapar handles the polite, repetitive follow-up. The owner only steps in when a personal call is actually needed, and the customer can answer "I'll pay Friday" with one tap. That promise is recorded and followed up automatically.</p>
+      </div>
+
+      <div class="full">
+        <div class="ladder" aria-label="Reminder ladder">
+          <div class="rung"><span class="d mono">Due date</span><b>Friendly nudge</b><span>Bill and UPI link, in the customer's language, sent as the shop.</span></div>
+          <div class="rung"><span class="d mono">+3 days</span><b>Running total</b><span>One line with everything outstanding and a "pay on" option.</span></div>
+          <div class="rung"><span class="d mono">Promise date</span><b>Keep the promise</b><span>An automatic reminder on the day the customer chose.</span></div>
+          <div class="rung owner"><span class="d mono">+7 days</span><b>Owner steps in</b><span>Flagged in the owner's list with one-tap call or voice note.</span></div>
+        </div>
+      </div>
+
+      <div class="full">
+        <h4>Wireframe</h4>
+        <div class="phones">
+          <div class="phone-col">
+            <div class="phone" role="img" aria-label="Owner's dues screen wireframe">
+              <div class="bar"></div>
+              <div class="ttl">Dues today <small class="mono">₹38,450</small></div>
+              <div class="due"><span class="nm">Sharma General Store</span><span class="amt">₹12,800</span><span class="st">9 days, no reply</span><span class="tag act">Call</span></div>
+              <div class="due"><span class="nm">Lakshmi Traders</span><span class="amt">₹9,250</span><span class="st">Promised Fri, 10 Oct</span><span class="tag wait">Promised</span></div>
+              <div class="due"><span class="nm">Raju Tea Stall</span><span class="amt">₹1,400</span><span class="st">Reminder 2 sent</span><span class="tag wait">Waiting</span></div>
+              <div class="due"><span class="nm">New Fresh Mart</span><span class="amt">₹15,000</span><span class="st">Paid by UPI, 11:42</span><span class="tag ok">Paid</span><span class="stamp" aria-hidden="true">PAID</span></div>
+              <div class="btns"><span>Pause for a customer</span><span class="pri">Send voice note</span></div>
+            </div>
+            <p class="cap">The owner sees only who needs a personal touch today.</p>
+          </div>
+          <div class="phone-col">
+            <div class="phone" role="img" aria-label="Customer's WhatsApp reminder wireframe">
+              <div class="bar"></div>
+              <div class="ttl">Sri Balaji Agencies <small class="mono">WhatsApp</small></div>
+              <div class="chat">
+                <div class="msg">Namaste Lakshmi ji, ₹9,250 is due for bill #2231 (28 Sep).<br><span class="pill">Pay by UPI</span> <span class="pill">Pay on…</span><small>Sent by Vyapar for Sri Balaji Agencies</small></div>
+                <div class="msg me">Pay on Friday</div>
+                <div class="msg">Thank you. We'll remind you on Fri, 10 Oct.<small>Promise saved to the shop's ledger</small></div>
+              </div>
+            </div>
+            <p class="cap">The customer answers in one tap, without an awkward call.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4>How we'd know it worked</h4>
+        <div class="kpi">
+          <div class="ns"><span class="label">Main metric</span><b>Share of credit collected within 7 days of the due date</b></div>
+          <div class="row3"><div>Reminders sent per due bill</div><div>Reply or open rate</div><div>Promises made</div><div>Promises kept</div></div>
+          <p class="guard"><b>Guardrails:</b> customers opting out or blocking the shop, and owners switching reminders off. If those rise, the ladder is too pushy.</p>
+        </div>
+      </div>
+      <div>
+        <h4>What I'd leave out of v1</h4>
+        <ul>
+          <li>Automated calls and anything that sounds like a legal notice.</li>
+          <li>Late fees or interest. Owners decide that face to face.</li>
+          <li>New screens. The ladder lives inside the existing reminder flow.</li>
+        </ul>
+        <h4 style="margin-top:18px">How I'd roll it out</h4>
+        <p>Start with owners who already send reminders by hand, compare collection against a matched group for a month, then widen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="sec-head">
+    <span class="label">How I work</span>
+    <div><h2>The same four steps, every time</h2></div>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="k">Step 1</span><b>Sit with the user</b><p>In their classroom, shop or workshop, during a normal day. Not in a meeting room.</p></div>
+    <div class="step"><span class="k">Step 2</span><b>Ship the smallest useful thing</b><p>Agree it with the people who own the outcome, then build it in days, often myself.</p></div>
+    <div class="step"><span class="k">Step 3</span><b>Watch it get used</b><p>Go back and see whether it saved time or added a step. Check the numbers.</p></div>
+    <div class="step"><span class="k">Step 4</span><b>Cut what doesn't earn its place</b><p>Every feature has to justify the attention it takes. Most products need fewer.</p></div>
+  </div>
+</section>
+
+<section id="background">
+  <div class="sec-head">
+    <span class="label">Background</span>
+    <div><h2>Before product, I built physical things</h2></div>
+  </div>
+  <div class="tl">
+    <div><span class="when">Feb 2026 – now</span><div><b>Product Manager, Eduvantage Innovations (Think Pro Academy)</b><p>One of 7 core team members, reporting to the founders.</p></div></div>
+    <div><span class="when">Dec 2024 – Feb 2026</span><div><b>Founder, 3D Content Studio (freelance)</b><p>Designed a Blender pipeline and delivered the first model set in 15 days; grew to a 4-person remote studio on retainer.</p></div></div>
+    <div><span class="when">Jul – Sep 2025</span><div><b>Product Engineer, Bramer Pvt Ltd</b><p>Led an autonomous surveillance drone against a Border Roads Organisation spec; full design and documentation in 2 months against a 6-month plan.</p></div></div>
+    <div><span class="when">Dec 2024 – Jun 2025</span><div><b>Mechanical Systems Integrator, Yatri Motorcycles</b><p>Teardowns of 6 electric two-wheelers found 20% cost-reduction opportunities.</p></div></div>
+    <div><span class="when">2023 – 24</span><div><b>Captain, Team Raftaar</b><p>Led 30 people to two consecutive wins at the All-India ASME e-HPVC.</p></div></div>
+  </div>
+</section>
+
+<footer class="contact" id="contact">
+  <h2>Get in touch</h2>
+  <div class="cl">
+    <div><span class="mono" id="email">vaibhav.ky.2003@gmail.com</span><button class="copy" type="button" data-copy="email">Copy</button></div>
+    <div><span class="mono" id="phone">+91 87429 46325</span><button class="copy" type="button" data-copy="phone">Copy</button></div>
+    <div><a href="https://github.com/SherlyGuides">github.com/SherlyGuides</a><a href="https://learn.thinkpro.academy">learn.thinkpro.academy</a><a href="Vaibhav_Kumar_Vyapar_PM_Resume.pdf">Resume (PDF)</a></div>
+  </div>
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.dataset.copy), text=el.textContent.trim();
+    function done(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1600)}
+    function fallback(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected'}
+    try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+  });
+});
+</script>
+</body>
+</html>
