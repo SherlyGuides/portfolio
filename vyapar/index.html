@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Public+Sans:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: one reading column with a left rail for metadata. */
+/* Layout: one reading column; every section is a table you can skim, stacking into cards on phones. */
 :root{
   --paper:#f5f6f2; --sheet:#fbfcf9; --ink:#14202a; --ink2:#4b5762; --muted:#7a858d;
   --rule:#dde2da; --margin:#d9a49a; --accent:#1f4fbf; --accent-soft:#e6ecfa; --stamp:#c2361f; --ok:#1d7a4f;
@@ -27,7 +27,7 @@
 
 *{box-sizing:border-box}
 body{background:var(--paper);color:var(--ink);font:16px/1.6 var(--body);margin:0}
-.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:40px 72px}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:40px 72px}
 a{color:var(--accent);text-underline-offset:3px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.015em}
@@ -35,78 +35,49 @@ p{margin:0}
 .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 
-/* hero */
-.hero{position:relative;padding:28px 0 36px;border-bottom:1px solid var(--rule)}
-.hero .label{display:flex;gap:14px;flex-wrap:wrap}
-.hero h1{font-size:clamp(34px,6vw,56px);line-height:1.04;font-weight:700;margin:14px 0 16px}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .lede{font-size:18px;color:var(--ink2);max-width:62ch}
-.hero .who{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:15px;align-items:center}
-.who strong{font-family:var(--display);font-size:19px;font-weight:700}
-
-.figures{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--rule)}
-.fig{padding:20px 16px 20px 0;display:grid;gap:4px;align-content:start}
-.fig + .fig{padding-left:16px;border-left:1px solid var(--rule)}
-.fig .n{font-family:var(--mono);font-size:30px;font-weight:500;letter-spacing:-.02em;line-height:1.1}
-.fig .t{font-size:13.5px;color:var(--ink2);line-height:1.4}
-@media(max-width:720px){.figures{grid-template-columns:1fr 1fr}.fig:nth-child(3){padding-left:0;border-left:0}.fig:nth-child(n+3){border-top:1px solid var(--rule)}}
+/* intro */
+.hero{padding:20px 0 32px;border-bottom:1px solid var(--rule)}
+.hero h1{font-size:clamp(34px,6vw,56px);line-height:1.05;font-weight:700;margin:12px 0 16px}
+.hero .lede{font-size:18px;color:var(--ink2);max-width:64ch;display:grid;gap:12px}
+.hero .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:15px}
 
 /* sections */
-section{padding-top:64px}
-.sec-head{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;margin-bottom:26px;align-items:end}
-.sec-head h2{font-size:clamp(26px,3.4vw,36px);line-height:1.1}
-.sec-head p{color:var(--ink2);max-width:60ch;margin-top:8px}
-@media(max-width:760px){.sec-head{grid-template-columns:1fr;gap:6px}}
+section{padding-top:56px}
+.sec-head{margin-bottom:18px;display:grid;gap:6px}
+.sec-head h2{font-size:clamp(24px,3.2vw,32px);line-height:1.15}
+.sec-head p{color:var(--ink2);max-width:66ch}
 
-/* ledger table */
-.ledger-wrap{overflow-x:auto;background:var(--sheet);border:1px solid var(--rule);border-radius:6px}
-table.ledger{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
-.ledger th{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:12px 16px;border-bottom:2px solid var(--ink)}
-.ledger td{padding:13px 16px;border-bottom:1px solid var(--rule);vertical-align:top}
-.ledger tr:last-child td{border-bottom:0}
-.ledger td:first-child{font-family:var(--mono);color:var(--muted);width:44px;border-right:1px solid var(--margin)}
-.ledger td:nth-child(2){font-weight:600;width:34%}
-.ledger td:nth-child(3){color:var(--ink2)}
+/* tables */
+.tbl-wrap{background:var(--sheet);border:1px solid var(--rule);border-radius:6px}
+table.tbl{width:100%;border-collapse:collapse;font-size:15px;line-height:1.55}
+.tbl th{font-family:var(--mono);font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:12px 16px;border-bottom:2px solid var(--ink);vertical-align:bottom}
+.tbl td{padding:14px 16px;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink2)}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.k{color:var(--ink);font-weight:600}
+.tbl td.k small{display:block;font-weight:400;font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:2px}
+.tbl td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);font-size:22px;font-weight:500;white-space:nowrap}
+.tbl td.idx{font-family:var(--mono);color:var(--muted);width:48px;border-right:1px solid var(--margin)}
+.tbl td.res{color:var(--ink)}
+.tbl ul{margin:6px 0 0;padding-left:18px;display:grid;gap:3px}
+.who-owner td{background:color-mix(in srgb,var(--stamp) 7%,transparent)}
+.who-owner td.k{color:var(--stamp)}
+.w20{width:20%}.w25{width:25%}.w30{width:30%}.w35{width:35%}
 
-/* case studies */
-.case{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:32px 0;border-top:1px solid var(--rule)}
-.case:first-of-type{border-top:0;padding-top:0}
-.meta{display:grid;gap:12px;align-content:start;font-size:14px;color:var(--ink2)}
-.meta div{display:grid;gap:2px}
-.meta .v{color:var(--ink)}
-.case h3{font-size:24px;line-height:1.2;margin-bottom:12px}
-.case .body{display:grid;gap:14px;max-width:66ch}
-.case .body p{color:var(--ink2)}
-.case .body p b{color:var(--ink);font-weight:600}
-.case .body p b a{color:var(--accent)}
-.case ul{margin:0;padding-left:18px;color:var(--ink2);display:grid;gap:6px}
-.result{display:flex;flex-wrap:wrap;gap:8px}
-.chip{font-family:var(--mono);font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
-@media(max-width:760px){.case{grid-template-columns:1fr;gap:14px}.meta{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}}
+/* on phones each row becomes a small card, with the column name above each cell */
+@media(max-width:680px){
+  table.tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:auto}
+  .tbl thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .tbl tr{padding:12px 14px;border-bottom:1px solid var(--rule)}
+  .tbl tr:last-child{border-bottom:0}
+  .tbl td{border:0;padding:4px 0}
+  .tbl td.idx{border:0;width:auto}
+  .tbl td[data-label]::before{content:attr(data-label);display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+}
 
-/* Vyapar case */
-.proposal{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:32px clamp(18px,4vw,40px);position:relative;overflow:hidden}
-.proposal::before{content:"";position:absolute;top:0;bottom:0;left:clamp(10px,2vw,22px);border-left:1px solid var(--margin)}
-.proposal > *{position:relative}
-.note{font-size:14px;color:var(--ink2);border:1px dashed var(--rule);border-radius:6px;padding:10px 14px;max-width:72ch}
-.pgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 40px;margin-top:28px}
-.pgrid h4{font-family:var(--display);font-size:18px;margin:0 0 8px;letter-spacing:-.01em}
-.pgrid p,.pgrid li{color:var(--ink2);font-size:15px}
-.pgrid ul,.pgrid ol{margin:0;padding-left:18px;display:grid;gap:6px}
-.full{grid-column:1/-1}
-@media(max-width:760px){.pgrid{grid-template-columns:1fr}}
-
-.ladder{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:6px;counter-reset:step}
-.rung{padding:14px 14px 14px 0;border-top:3px solid var(--rule);display:grid;gap:4px;align-content:start}
-.rung + .rung{padding-left:14px}
-.rung.owner{border-top-color:var(--stamp)}
-.rung .d{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
-.rung b{font-size:15px}
-.rung span{font-size:14px;color:var(--ink2);line-height:1.45}
-@media(max-width:760px){.ladder{grid-template-columns:1fr 1fr}.rung:nth-child(3){padding-left:0}}
+.note{font-size:14px;color:var(--ink2);margin-top:12px;max-width:72ch}
 
 /* wireframes */
-.phones{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;margin:8px 0 4px}
+.phones{display:flex;flex-wrap:wrap;gap:28px;justify-content:center;margin-top:8px;padding:24px 16px;background:var(--sheet);border:1px solid var(--rule);border-radius:6px}
 .phone{width:280px;max-width:100%;border:2px solid var(--ink);border-radius:30px;padding:14px 12px 18px;background:var(--paper)}
 .phone .bar{height:6px;width:70px;border-radius:6px;background:var(--rule);margin:0 auto 12px}
 .phone .ttl{font-family:var(--display);font-weight:700;font-size:17px;display:flex;justify-content:space-between;align-items:baseline;padding:0 4px 8px;border-bottom:1px solid var(--rule)}
@@ -130,43 +101,12 @@ table.ledger{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
 .msg.me{justify-self:end;border-radius:12px 12px 3px 12px;background:var(--accent-soft);border-color:transparent}
 .msg .pill{display:inline-block;margin-top:6px;border:1px solid var(--ink);border-radius:6px;padding:3px 9px;font-family:var(--mono);font-size:11.5px}
 .msg small{display:block;color:var(--muted);font-size:11px;margin-top:3px}
-.cap{text-align:center;font-size:13px;color:var(--muted);margin-top:10px;max-width:280px}
+.cap{text-align:center;font-size:13px;color:var(--muted);margin-top:10px}
 .phone-col{display:grid;justify-items:center}
 
-.kpi{display:grid;gap:10px}
-.kpi .ns{border:2px solid var(--ink);border-radius:6px;padding:12px 14px}
-.kpi .ns b{font-family:var(--display);font-size:17px;display:block}
-.kpi .row3{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.kpi .row3 div{border:1px solid var(--rule);border-radius:6px;padding:9px 10px;font-size:13.5px;color:var(--ink2)}
-.kpi .guard{font-size:14px;color:var(--ink2)}
-@media(max-width:760px){.kpi .row3{grid-template-columns:1fr 1fr}}
-
-/* how I work */
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.step{border-top:2px solid var(--ink);padding-top:12px;display:grid;gap:6px;align-content:start}
-.step .k{font-family:var(--mono);font-size:13px;color:var(--accent)}
-.step b{font-family:var(--display);font-size:19px;font-weight:700;line-height:1.2}
-.step p{color:var(--ink2);font-size:15px}
-@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
-@media(max-width:440px){.steps{grid-template-columns:1fr}}
-
-/* timeline */
-.tl{display:grid}
-.tl > div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--rule)}
-.tl .when{font-family:var(--mono);font-size:13.5px;color:var(--muted);padding-top:2px}
-.tl b{font-weight:600}
-.tl p{color:var(--ink2);font-size:15px;margin-top:2px}
-@media(max-width:760px){.tl > div{grid-template-columns:1fr;gap:2px}}
-
 /* contact */
-.contact{margin-top:64px;padding:32px 0 0;border-top:2px solid var(--ink);display:grid;grid-template-columns:200px minmax(0,1fr);gap:24px}
-.contact h2{font-size:30px}
-.cl{display:grid;gap:10px;font-size:16px}
-.cl div{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
-.cl .mono{font-size:15px}
-.copy{font:inherit;font-size:12.5px;font-family:var(--mono);background:transparent;color:var(--ink2);border:1px solid var(--rule);border-radius:6px;padding:3px 9px;cursor:pointer}
+.copy{font:inherit;font-size:12.5px;font-family:var(--mono);background:transparent;color:var(--ink2);border:1px solid var(--rule);border-radius:6px;padding:3px 9px;cursor:pointer;margin-left:10px}
 .copy:hover{border-color:var(--ink2)}
-@media(max-width:760px){.contact{grid-template-columns:1fr;gap:12px}}
 </style>
 
 </head>
@@ -174,222 +114,209 @@ table.ledger{width:100%;border-collapse:collapse;min-width:620px;font-size:15px}
 <div class="wrap">
 
 <header class="hero">
-  <div class="label"><span>Product Manager</span><span>Bangalore</span></div>
+  <span class="label">Product Manager · Bangalore</span>
   <h1>Vaibhav Kumar</h1>
-  <p class="lede">I'm a product manager at Think Pro Academy. I run Learno, a classroom app used by teachers at 100+ schools, and I built most of the tools the company uses to produce its lesson content. I put this page together for the Product Manager role at Vyapar. It covers my main work and a short note on one problem I'd want to look into there.</p>
-  <div class="who"><span>B.Tech, Delhi Technological University</span><a href="Vaibhav_Kumar_Vyapar_PM_Resume.pdf">Resume (PDF)</a><a href="#contact">Contact</a></div>
+  <div class="lede">
+    <p>Hi, I'm Vaibhav. I work as a product manager at Think Pro Academy. Most of my day goes into Learno, a classroom app that teachers at 100+ schools use, and the rest goes into the tools we use to make lesson content.</p>
+    <p>I'm applying for the Product Manager role at Vyapar. I've put my work into tables so it's quick to skim, and at the end there's one idea I'd like to dig into if I join.</p>
+  </div>
+  <div class="links"><span>B.Tech, Delhi Technological University</span><a href="Vaibhav_Kumar_Vyapar_PM_Resume.pdf">Resume (PDF)</a><a href="#contact">Contact</a></div>
 </header>
 
-<div class="figures" aria-label="Key figures">
-  <div class="fig"><span class="n">100+</span><span class="t">schools using Learno</span></div>
-  <div class="fig"><span class="n">~2/day</span><span class="t">features shipped on Learno</span></div>
-  <div class="fig"><span class="n">70–95%</span><span class="t">less effort making PPTs (~70%) and animated videos (~95%)</span></div>
-  <div class="fig"><span class="n">15 days</span><span class="t">to deliver the first 3D model set as a freelancer</span></div>
-</div>
+<section id="numbers">
+  <div class="sec-head"><h2>A few numbers</h2></div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th class="w20">Number</th><th>What it's about</th></tr></thead>
+      <tbody>
+        <tr><td class="n">100+</td><td data-label="What it's about">Schools where teachers use Learno, the app I run.</td></tr>
+        <tr><td class="n">~2 a day</td><td data-label="What it's about">Features I ship on Learno, using Claude Code.</td></tr>
+        <tr><td class="n">~70% / ~95%</td><td data-label="What it's about">Less effort to make slides / animated videos after I automated production.</td></tr>
+        <tr><td class="n">15 days</td><td data-label="What it's about">To deliver the first set of 3D models when I was freelancing, starting from a new pipeline.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 <section id="fit">
-  <div class="sec-head">
-    <span class="label">The role</span>
-    <div><h2>How my experience lines up with the posting</h2></div>
-  </div>
-  <div class="ledger-wrap">
-    <table class="ledger">
-      <thead><tr><th>No.</th><th>From the posting</th><th>What I've done</th></tr></thead>
+  <div class="sec-head"><h2>How I match the job posting</h2></div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th>No.</th><th class="w30">The posting asks for</th><th>What I've done</th></tr></thead>
       <tbody>
-        <tr><td>01</td><td>Customer research</td><td>I sit in on classes and delivery sessions. Every Learno feature involves at least one teacher's feedback.</td></tr>
-        <tr><td>02</td><td>Simpler usability</td><td>Phone-number sign-in, offline sessions, tick-off parts lists and plain-English activity logs, all for teachers who aren't very technical.</td></tr>
-        <tr><td>03</td><td>Owning feature metrics</td><td>Tracked production effort before and after automation (about 70% and 95% less). I remove features that add clutter.</td></tr>
-        <tr><td>04</td><td>Internal products</td><td>Production pipelines for slides, video, 3D and books, plus PPT Splitter and Build Steps.</td></tr>
-        <tr><td>05</td><td>Adoption with customer-facing teams</td><td>Teacher readiness on WhatsApp for ~100 schools, with progress tracking and escalation.</td></tr>
-        <tr><td>06</td><td>Working with design and engineering</td><td>I build with Claude Code myself. At Bramer I coordinated the design, electronics and airframe teams.</td></tr>
-        <tr><td>07</td><td>Engineering or management degree</td><td>B.Tech, Mechanical Engineering, DTU (2025).</td></tr>
+        <tr><td class="idx">01</td><td class="k">Customer research</td><td data-label="What I've done">I sit in on classes and delivery sessions. Every Learno feature has at least one teacher's feedback behind it.</td></tr>
+        <tr><td class="idx">02</td><td class="k">Simpler usability</td><td data-label="What I've done">Phone-number sign-in, offline sessions, tick-off parts lists and plain-English activity logs, for teachers who aren't very technical.</td></tr>
+        <tr><td class="idx">03</td><td class="k">Owning feature metrics</td><td data-label="What I've done">I tracked production effort before and after automating it (about 70% and 95% less). I take out features that add clutter.</td></tr>
+        <tr><td class="idx">04</td><td class="k">Products for internal teams</td><td data-label="What I've done">Production pipelines for slides, video, 3D and books, plus PPT Splitter and Build Steps.</td></tr>
+        <tr><td class="idx">05</td><td class="k">Helping customer-facing teams with adoption</td><td data-label="What I've done">Teacher readiness on WhatsApp for ~100 schools, with progress tracking and escalation.</td></tr>
+        <tr><td class="idx">06</td><td class="k">Working with design and engineering</td><td data-label="What I've done">I build with Claude Code myself. At Bramer I coordinated the design, electronics and airframe teams.</td></tr>
+        <tr><td class="idx">07</td><td class="k">Engineering or management degree</td><td data-label="What I've done">B.Tech in Mechanical Engineering from DTU (2025).</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
 <section id="work">
-  <div class="sec-head">
-    <span class="label">Work</span>
-    <div><h2>Main projects</h2></div>
+  <div class="sec-head"><h2>What I've worked on</h2><p>All at Think Pro Academy unless noted.</p></div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th class="w20">Project</th><th class="w25">What was going on</th><th>What I did</th><th class="w20">Where it ended up</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k">Learno<small>Feb 2026 – now</small></td>
+          <td data-label="What was going on">Teachers run hands-on build classes with a projector, a full room and patchy Wi-Fi. Learno was just a content player.</td>
+          <td data-label="What I did">Sat in on classes and delivery sessions. Got at least one teacher's feedback on every feature and agreed each one with the founders. Built with Claude Code, about two features a day, and took out whatever added clutter. Some of what went in:
+            <ul><li>Offline sessions</li><li>Phone-number sign-in</li><li>Parts lists teachers tick off during a build</li><li>Activity logs in plain English</li></ul></td>
+          <td class="res" data-label="Where it ended up">A teaching assistant used at 100+ schools.</td>
+        </tr>
+        <tr>
+          <td class="k">Teacher readiness</td>
+          <td data-label="What was going on">Teachers at ~100 schools need to be prepared before each lesson, and they're on WhatsApp all day anyway.</td>
+          <td data-label="What I did">Built it on the WhatsApp Business API: prompts go out, teachers can reply by voice, progress is tracked per school, and anyone falling behind gets escalated to our team.</td>
+          <td class="res" data-label="Where it ended up">Runs across ~100 schools with no separate app to install.</td>
+        </tr>
+        <tr>
+          <td class="k">Slides and video</td>
+          <td data-label="What was going on">Every lesson needs slides and animated video.</td>
+          <td data-label="What I did">Automated how both get made.</td>
+          <td class="res" data-label="Where it ended up">About 70% less effort on slides and 95% on video.</td>
+        </tr>
+        <tr>
+          <td class="k">3D content</td>
+          <td data-label="What was going on">The company didn't have 3D content.</td>
+          <td data-label="What I did">Set up 3D (GLB) production, building on the Blender pipeline from my freelance work.</td>
+          <td class="res" data-label="Where it ended up">A new content stream.</td>
+        </tr>
+        <tr>
+          <td class="k">Books</td>
+          <td data-label="What was going on">Courses come with printed books.</td>
+          <td data-label="What I did">One pipeline: AI writes the text and makes the images, Python handles the formatting, and image-to-text models review the pages. AI-written lesson content gets checked automatically for reading level, terminology and safety rules.</td>
+          <td class="res" data-label="Where it ended up">Books produced end to end.</td>
+        </tr>
+        <tr>
+          <td class="k">Handing it off</td>
+          <td data-label="What was going on">I couldn't run production and Learno at the same time.</td>
+          <td data-label="What I did">Handed the production pipeline to contract workers outside company retainers.</td>
+          <td class="res" data-label="Where it ended up">No fixed payroll for it, and my time went back to Learno.</td>
+        </tr>
+        <tr>
+          <td class="k"><a href="https://github.com/SherlyGuides/pptx-splitter">PPT Splitter</a></td>
+          <td data-label="What was going on">Decks with embedded video were too heavy for schools on slow internet.</td>
+          <td data-label="What I did">Built a tool that turns a deck into a light PDF plus separate MP4 files.</td>
+          <td class="res" data-label="Where it ended up">Schools on slow connections can download lessons.</td>
+        </tr>
+        <tr>
+          <td class="k"><a href="https://github.com/SherlyGuides/build-steps">Build Steps</a></td>
+          <td data-label="What was going on">Teachers need step-by-step build instructions and parts lists.</td>
+          <td data-label="What I did">Built a phone app that makes an instruction deck and parts list from photos of a model being put together.</td>
+          <td class="res" data-label="Where it ended up">Instructions come straight from photos.</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
-  <article class="case">
-    <div class="meta">
-      <div><span class="label">Role</span><span class="v">Product Manager</span></div>
-      <div><span class="label">When</span><span class="v mono">Feb 2026 – now</span></div>
-      <div><span class="label">Users</span><span class="v">Teachers at 100+ schools</span></div>
-    </div>
-    <div class="body">
-      <h3>Learno</h3>
-      <p>Learno started as a player for lesson content. Teachers use it in hands-on build classes, usually with a projector, a full room and unreliable internet. It's now closer to a teaching assistant.</p>
-      <p>Most of what I know about it comes from sitting in classes and delivery sessions. Every feature involves at least one teacher's feedback and is agreed with the founders and stakeholders. I build with Claude Code and ship about two features a day, and I remove things that add clutter. Some of what we added:</p>
-      <ul>
-        <li>Offline sessions, because school internet drops.</li>
-        <li>Phone-number sign-in.</li>
-        <li>Parts lists teachers tick off during a build.</li>
-        <li>Activity logs in plain English for reviewers who aren't technical.</li>
-      </ul>
-    </div>
-  </article>
-
-  <article class="case">
-    <div class="meta">
-      <div><span class="label">Role</span><span class="v">Designed and built</span></div>
-      <div><span class="label">Channel</span><span class="v">WhatsApp Business API</span></div>
-      <div><span class="label">Reach</span><span class="v">~100 schools</span></div>
-    </div>
-    <div class="body">
-      <h3>Teacher readiness on WhatsApp</h3>
-      <p>Teachers at ~100 schools need to be prepared before each lesson. They already use WhatsApp all day, so I built readiness there instead of in a separate app. Prompts go out on WhatsApp, teachers can reply by voice, progress is tracked per school, and anyone falling behind gets escalated to someone on our team.</p>
-      <p>It works a lot like payment reminders do at Vyapar, which is why I picked that for the note further down.</p>
-    </div>
-  </article>
-
-  <article class="case">
-    <div class="meta">
-      <div><span class="label">Role</span><span class="v">Built, then handed off</span></div>
-      <div><span class="label">Users</span><span class="v">Content team, contract workers</span></div>
-    </div>
-    <div class="body">
-      <h3>Content production</h3>
-      <p>Each lesson needs slides, animated video, 3D models and printed books. I automated these: about 70% less effort on PPTs and 95% on animated videos. I also started 3D (GLB) content, which the company didn't have before.</p>
-      <p>Books go through one pipeline: AI generates the text and images, Python does the formatting, and image-to-text models review the pages. AI-generated lesson content is checked automatically for reading level, terminology and safety rules.</p>
-      <p>Contract workers outside company retainers now run the pipeline, so it adds nothing to fixed payroll.</p>
-    </div>
-  </article>
-
-  <article class="case">
-    <div class="meta">
-      <div><span class="label">Role</span><span class="v">Designed and built</span></div>
-      <div><span class="label">Users</span><span class="v">Schools on slow internet</span></div>
-    </div>
-    <div class="body">
-      <h3>PPT Splitter and Build Steps</h3>
-      <p><b><a href="https://github.com/SherlyGuides/pptx-splitter">PPT Splitter</a></b> turns lesson decks with embedded video into a light PDF plus separate MP4 files, so schools on slow connections can download them.</p>
-      <p><b><a href="https://github.com/SherlyGuides/build-steps">Build Steps</a></b> makes a build-instruction deck and parts list from phone photos of a model being put together.</p>
-    </div>
-  </article>
 </section>
 
 <section id="vyapar">
-  <div class="sec-head">
-    <span class="label">Vyapar</span>
-    <div><h2>An idea: following up on unpaid bills</h2><p>I only have public information about Vyapar, so this is a starting point for a conversation, not a plan.</p></div>
+  <div class="sec-head"><h2>One idea for Vyapar: following up on unpaid bills</h2><p>I only know what's public about Vyapar, so take this as a starting point for a conversation, not a plan.</p></div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th class="w25">Question</th><th>What I think</th></tr></thead>
+      <tbody>
+        <tr><td class="k">What does Vyapar have already?</td><td data-label="What I think">Over 1 crore businesses use it for billing, stock and accounts. It can send bills and payment reminders on WhatsApp with a UPI link, billing works offline, it runs in 9+ languages, and Suvit (acquired Nov 2025) adds reconciliation and compliance.</td></tr>
+        <tr><td class="k">What's the problem?</td><td data-label="What I think">Shops and distributors sell a lot on credit (<i>udhaar</i>). Sending one reminder is easy. My guess is the follow-up is where it breaks: owners don't want to keep chasing regular customers, so the reminder goes out once and then stops.</td></tr>
+        <tr><td class="k">How would I check that?</td><td data-label="What I think">Spend a day each in around ten shops and distributors in Bangalore, especially at closing time. Look at how many reminders lead to payment within 7 days, and whether the UPI link, language or time of day changes that. Ask support and sales why owners turn reminders off.</td></tr>
+        <tr><td class="k">What's the idea?</td><td data-label="What I think">Let Vyapar send the routine follow-ups on a schedule and bring the owner in only when a call is needed. Customers can reply with the date they'll pay, and Vyapar reminds them that day.</td></tr>
+        <tr><td class="k">What would I leave out at first?</td><td data-label="What I think">Automated calls, anything that sounds like a legal notice, and late fees or interest, which are the owner's call. No new screens either; it should fit into the reminder flow that's already there.</td></tr>
+        <tr><td class="k">How would it roll out?</td><td data-label="What I think">Start with owners who already send reminders, compare their collections with a similar group for a month, then expand.</td></tr>
+      </tbody>
+    </table>
   </div>
 
-  <div class="proposal">
-    <div class="pgrid" style="margin-top:0">
-      <div>
-        <h4>What Vyapar already has</h4>
-        <ul>
-          <li>Over 1 crore businesses using it for billing, stock and accounts.</li>
-          <li>Bills and payment reminders on WhatsApp, with UPI collection.</li>
-          <li>Offline billing that syncs later, in 9+ languages.</li>
-          <li>Suvit, acquired in Nov 2025, for reconciliation and compliance.</li>
-        </ul>
-      </div>
-      <div>
-        <h4>The problem</h4>
-        <p>Shops and distributors sell a lot on credit (<i>udhaar</i>). Sending a reminder is already easy. My guess is that the harder part is following up: owners don't want to keep chasing regular customers, so reminders go out once and then stop.</p>
-      </div>
+  <div class="sec-head" style="margin-top:32px"><h3>The reminder schedule</h3></div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th class="w20">When</th><th>What goes out</th><th class="w20">Who</th></tr></thead>
+      <tbody>
+        <tr><td class="k mono">Due date</td><td data-label="What goes out">The bill and a UPI link, in the customer's language.</td><td data-label="Who">Vyapar</td></tr>
+        <tr><td class="k mono">+3 days</td><td data-label="What goes out">The total outstanding, with an option to pick a payment date.</td><td data-label="Who">Vyapar</td></tr>
+        <tr><td class="k mono">Date picked</td><td data-label="What goes out">A reminder on the day the customer chose.</td><td data-label="Who">Vyapar</td></tr>
+        <tr class="who-owner"><td class="k mono">+7 days, unpaid</td><td data-label="What goes out">Shows up in the owner's list to call or send a voice note.</td><td data-label="Who">Owner</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-      <div>
-        <h4>What I'd check first</h4>
-        <ol>
-          <li>Spend a day each in around ten shops and distributors in Bangalore, especially at closing time.</li>
-          <li>Look at what share of reminders lead to payment within 7 days, and whether the UPI link, language or time of day changes that.</li>
-          <li>Ask support and sales why owners turn reminders off.</li>
-        </ol>
+  <div class="sec-head" style="margin-top:32px"><h3>Rough wireframe</h3></div>
+  <div class="phones">
+    <div class="phone-col">
+      <div class="phone" role="img" aria-label="Owner's dues screen wireframe">
+        <div class="bar"></div>
+        <div class="ttl">Dues today <small class="mono">₹38,450</small></div>
+        <div class="due"><span class="nm">Sharma General Store</span><span class="amt">₹12,800</span><span class="st">9 days, no reply</span><span class="tag act">Call</span></div>
+        <div class="due"><span class="nm">Lakshmi Traders</span><span class="amt">₹9,250</span><span class="st">Will pay Fri, 10 Oct</span><span class="tag wait">Promised</span></div>
+        <div class="due"><span class="nm">Raju Tea Stall</span><span class="amt">₹1,400</span><span class="st">Reminder 2 sent</span><span class="tag wait">Waiting</span></div>
+        <div class="due"><span class="nm">New Fresh Mart</span><span class="amt">₹15,000</span><span class="st">Paid by UPI, 11:42</span><span class="tag ok">Paid</span><span class="stamp" aria-hidden="true">PAID</span></div>
+        <div class="btns"><span>Pause reminders</span><span class="pri">Send voice note</span></div>
       </div>
-      <div>
-        <h4>The idea</h4>
-        <p>Let Vyapar send the routine follow-ups on a schedule, and only bring the owner in when a call is needed. The customer can reply with a date they'll pay, and Vyapar reminds them on that day.</p>
-      </div>
-
-      <div class="full">
-        <div class="ladder" aria-label="Reminder schedule">
-          <div class="rung"><span class="d mono">Due date</span><b>First reminder</b><span>Bill and UPI link in the customer's language.</span></div>
-          <div class="rung"><span class="d mono">+3 days</span><b>Second reminder</b><span>Total outstanding, with an option to pick a payment date.</span></div>
-          <div class="rung"><span class="d mono">Chosen date</span><b>Promise reminder</b><span>Sent on the date the customer picked.</span></div>
-          <div class="rung owner"><span class="d mono">+7 days</span><b>Owner follows up</b><span>Shows up in the owner's list to call or send a voice note.</span></div>
-        </div>
-      </div>
-
-      <div class="full">
-        <h4>Rough wireframe</h4>
-        <div class="phones">
-          <div class="phone-col">
-            <div class="phone" role="img" aria-label="Owner's dues screen wireframe">
-              <div class="bar"></div>
-              <div class="ttl">Dues today <small class="mono">₹38,450</small></div>
-              <div class="due"><span class="nm">Sharma General Store</span><span class="amt">₹12,800</span><span class="st">9 days, no reply</span><span class="tag act">Call</span></div>
-              <div class="due"><span class="nm">Lakshmi Traders</span><span class="amt">₹9,250</span><span class="st">Will pay Fri, 10 Oct</span><span class="tag wait">Promised</span></div>
-              <div class="due"><span class="nm">Raju Tea Stall</span><span class="amt">₹1,400</span><span class="st">Reminder 2 sent</span><span class="tag wait">Waiting</span></div>
-              <div class="due"><span class="nm">New Fresh Mart</span><span class="amt">₹15,000</span><span class="st">Paid by UPI, 11:42</span><span class="tag ok">Paid</span><span class="stamp" aria-hidden="true">PAID</span></div>
-              <div class="btns"><span>Pause reminders</span><span class="pri">Send voice note</span></div>
-            </div>
-            <p class="cap">Owner's view</p>
-          </div>
-          <div class="phone-col">
-            <div class="phone" role="img" aria-label="Customer's WhatsApp reminder wireframe">
-              <div class="bar"></div>
-              <div class="ttl">Sri Balaji Agencies <small class="mono">WhatsApp</small></div>
-              <div class="chat">
-                <div class="msg">Namaste Lakshmi ji, ₹9,250 is due for bill #2231 (28 Sep).<br><span class="pill">Pay by UPI</span> <span class="pill">Pay on…</span><small>Sent by Vyapar for Sri Balaji Agencies</small></div>
-                <div class="msg me">Pay on Friday</div>
-                <div class="msg">Thank you. We'll remind you on Fri, 10 Oct.</div>
-              </div>
-            </div>
-            <p class="cap">Customer's view</p>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <h4>How to measure it</h4>
-        <div class="kpi">
-          <div class="ns"><span class="label">Main metric</span><b>Share of credit collected within 7 days of the due date</b></div>
-          <div class="row3"><div>Reminders sent per bill</div><div>Reply rate</div><div>Dates promised</div><div>Promises kept</div></div>
-          <p class="guard">I'd also watch how many customers block the shop and how many owners turn reminders off. If those go up, the reminders are too pushy.</p>
-        </div>
-      </div>
-      <div>
-        <h4>Not in the first version</h4>
-        <ul>
-          <li>Automated calls, or wording that sounds like a legal notice.</li>
-          <li>Late fees or interest. That's for the owner to decide.</li>
-          <li>New screens. It should fit into the existing reminder flow.</li>
-        </ul>
-        <h4 style="margin-top:18px">Rollout</h4>
-        <p>Start with owners who already send reminders, compare their collections with a similar group for a month, then expand.</p>
-      </div>
+      <p class="cap">Owner's view</p>
     </div>
+    <div class="phone-col">
+      <div class="phone" role="img" aria-label="Customer's WhatsApp reminder wireframe">
+        <div class="bar"></div>
+        <div class="ttl">Sri Balaji Agencies <small class="mono">WhatsApp</small></div>
+        <div class="chat">
+          <div class="msg">Namaste Lakshmi ji, ₹9,250 is due for bill #2231 (28 Sep).<br><span class="pill">Pay by UPI</span> <span class="pill">Pay on…</span><small>Sent by Vyapar for Sri Balaji Agencies</small></div>
+          <div class="msg me">Pay on Friday</div>
+          <div class="msg">Thank you. We'll remind you on Fri, 10 Oct.</div>
+        </div>
+      </div>
+      <p class="cap">Customer's view</p>
+    </div>
+  </div>
+
+  <div class="sec-head" style="margin-top:32px"><h3>How I'd measure it</h3></div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th class="w35">Metric</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Share of credit collected within 7 days of the due date</td><td data-label="Why it matters">The main one. It's what the owner actually cares about.</td></tr>
+        <tr><td class="k">Reply rate</td><td data-label="Why it matters">Shows whether customers are engaging with the reminders at all.</td></tr>
+        <tr><td class="k">Dates promised, and promises kept</td><td data-label="Why it matters">Tells us if the "pay on" option is useful or just a way to delay.</td></tr>
+        <tr><td class="k">Customers blocking the shop, owners turning reminders off</td><td data-label="Why it matters">If these go up, the reminders are too pushy and we should back off.</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
 <section id="background">
-  <div class="sec-head">
-    <span class="label">Background</span>
-    <div><h2>Earlier work</h2></div>
-  </div>
-  <div class="tl">
-    <div><span class="when">Feb 2026 – now</span><div><b>Product Manager, Eduvantage Innovations (Think Pro Academy)</b><p>One of 7 core team members, reporting to the founders.</p></div></div>
-    <div><span class="when">Dec 2024 – Feb 2026</span><div><b>Founder, 3D Content Studio (freelance)</b><p>Set up a Blender pipeline and delivered the first 3D model set in 15 days. Grew to a 4-person remote studio on retainer.</p></div></div>
-    <div><span class="when">Jul – Sep 2025</span><div><b>Product Engineer, Bramer Pvt Ltd</b><p>Led design of an autonomous surveillance drone for a Border Roads Organisation spec. Finished design and documentation in 2 months against a 6-month plan.</p></div></div>
-    <div><span class="when">Dec 2024 – Jun 2025</span><div><b>Mechanical Systems Integrator, Yatri Motorcycles</b><p>Teardowns of 6 electric two-wheelers found 20% in possible cost reductions.</p></div></div>
-    <div><span class="when">2023 – 24</span><div><b>Captain, Team Raftaar</b><p>Led a 30-person team to two consecutive wins at the All-India ASME e-HPVC.</p></div></div>
+  <div class="sec-head"><h2>Where I've worked</h2></div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <thead><tr><th class="w20">When</th><th class="w30">Role</th><th>What I did</th></tr></thead>
+      <tbody>
+        <tr><td class="mono" data-label="When">Feb 2026 – now</td><td class="k">Product Manager, Eduvantage Innovations (Think Pro Academy)</td><td data-label="What I did">Everything above. I'm one of 7 core team members and report to the founders.</td></tr>
+        <tr><td class="mono" data-label="When">Dec 2024 – Feb 2026</td><td class="k">Founder, 3D Content Studio (freelance)</td><td data-label="What I did">Set up a Blender pipeline and delivered the first 3D model set in 15 days. Grew it to a 4-person remote studio on retainer, which led to the Think Pro offer.</td></tr>
+        <tr><td class="mono" data-label="When">Jul – Sep 2025</td><td class="k">Product Engineer, Bramer Pvt Ltd</td><td data-label="What I did">Led design of an autonomous surveillance drone for a Border Roads Organisation spec. Finished design and documentation in 2 months against a 6-month plan.</td></tr>
+        <tr><td class="mono" data-label="When">Dec 2024 – Jun 2025</td><td class="k">Mechanical Systems Integrator, Yatri Motorcycles</td><td data-label="What I did">Tore down 6 electric two-wheelers and found 20% in possible cost reductions.</td></tr>
+        <tr><td class="mono" data-label="When">2023 – 24</td><td class="k">Captain, Team Raftaar (DTU)</td><td data-label="What I did">Led a 30-person team to two wins in a row at the All-India ASME e-HPVC.</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<footer class="contact" id="contact">
-  <h2>Contact</h2>
-  <div class="cl">
-    <div><span class="mono" id="email">vaibhav.ky.2003@gmail.com</span><button class="copy" type="button" data-copy="email">Copy</button></div>
-    <div><span class="mono" id="phone">+91 87429 46325</span><button class="copy" type="button" data-copy="phone">Copy</button></div>
-    <div><a href="https://github.com/SherlyGuides">github.com/SherlyGuides</a><a href="https://learn.thinkpro.academy">learn.thinkpro.academy</a><a href="Vaibhav_Kumar_Vyapar_PM_Resume.pdf">Resume (PDF)</a></div>
+<section id="contact">
+  <div class="sec-head"><h2>Contact</h2></div>
+  <div class="tbl-wrap">
+    <table class="tbl">
+      <tbody>
+        <tr><td class="k w20">Email</td><td><span class="mono" id="email">vaibhav.ky.2003@gmail.com</span><button class="copy" type="button" data-copy="email">Copy</button></td></tr>
+        <tr><td class="k">Phone</td><td><span class="mono" id="phone">+91 87429 46325</span><button class="copy" type="button" data-copy="phone">Copy</button></td></tr>
+        <tr><td class="k">GitHub</td><td><a href="https://github.com/SherlyGuides">github.com/SherlyGuides</a></td></tr>
+        <tr><td class="k">Resume</td><td><a href="Vaibhav_Kumar_Vyapar_PM_Resume.pdf">Vaibhav_Kumar_Vyapar_PM_Resume.pdf</a></td></tr>
+        <tr><td class="k">Learno</td><td><a href="https://learn.thinkpro.academy">learn.thinkpro.academy</a></td></tr>
+      </tbody>
+    </table>
   </div>
-</footer>
+</section>
 
 </div>
 
